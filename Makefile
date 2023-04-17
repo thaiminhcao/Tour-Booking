@@ -51,3 +51,6 @@ gen-payment-model:
 
 gen-message-model:
 	goctl model mysql ddl -src="$(SCHEMA_DIR)/message.sql" -dir="$(MESSGE_MODEL_DIR)"
+
+runs:
+	go run ./main.go -f ROOT_DIR/etc/server.yaml

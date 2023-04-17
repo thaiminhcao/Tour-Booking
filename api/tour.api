@@ -14,7 +14,10 @@ type request {
 type response {
 	// TODO: add members here and delete this comment
 }
-
+@server(
+	jwt:  Auth
+	middleware: UserTokenMiddleware
+)
 service tour-api {
 	@handler GetUser // TODO: set handler name and delete this comment
 	get /users/id/:userId(request) returns(response)

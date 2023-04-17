@@ -17,7 +17,7 @@ import (
 var (
 	tourFieldNames          = builder.RawFieldNames(&Tour{})
 	tourRows                = strings.Join(tourFieldNames, ",")
-	tourRowsExpectAutoSet   = strings.Join(stringx.Remove(tourFieldNames, "`create_at`", "`create_time`", "`created_at`", "`update_at`", "`update_time`", "`updated_at`"), ",")
+	tourRowsExpectAutoSet   = strings.Join(stringx.Remove(tourFieldNames, "`tour_id`", "`create_at`", "`create_time`", "`created_at`", "`update_at`", "`update_time`", "`updated_at`"), ",")
 	tourRowsWithPlaceHolder = strings.Join(stringx.Remove(tourFieldNames, "`tour_id`", "`create_at`", "`create_time`", "`created_at`", "`update_at`", "`update_time`", "`updated_at`"), "=?,") + "=?"
 )
 
@@ -73,8 +73,8 @@ func (m *defaultTourModel) FindOne(ctx context.Context, tourId int64) (*Tour, er
 }
 
 func (m *defaultTourModel) Insert(ctx context.Context, data *Tour) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?)", m.table, tourRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.TourId, data.TourName, data.Desciption, data.Price, data.StartDate, data.EndDate, data.Location)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?)", m.table, tourRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.TourName, data.Desciption, data.Price, data.StartDate, data.EndDate, data.Location)
 	return ret, err
 }
 

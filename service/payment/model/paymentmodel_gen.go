@@ -17,7 +17,7 @@ import (
 var (
 	paymentFieldNames          = builder.RawFieldNames(&Payment{})
 	paymentRows                = strings.Join(paymentFieldNames, ",")
-	paymentRowsExpectAutoSet   = strings.Join(stringx.Remove(paymentFieldNames, "`create_at`", "`create_time`", "`created_at`", "`update_at`", "`update_time`", "`updated_at`"), ",")
+	paymentRowsExpectAutoSet   = strings.Join(stringx.Remove(paymentFieldNames, "`payment_id`", "`create_at`", "`create_time`", "`created_at`", "`update_at`", "`update_time`", "`updated_at`"), ",")
 	paymentRowsWithPlaceHolder = strings.Join(stringx.Remove(paymentFieldNames, "`payment_id`", "`create_at`", "`create_time`", "`created_at`", "`update_at`", "`update_time`", "`updated_at`"), "=?,") + "=?"
 )
 
@@ -70,8 +70,8 @@ func (m *defaultPaymentModel) FindOne(ctx context.Context, paymentId int64) (*Pa
 }
 
 func (m *defaultPaymentModel) Insert(ctx context.Context, data *Payment) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, paymentRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.PaymentId, data.PaymentMethod, data.Deposit, data.AmountOwed)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, paymentRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.PaymentMethod, data.Deposit, data.AmountOwed)
 	return ret, err
 }
 

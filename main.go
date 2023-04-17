@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"tourBooking/config"
+	userAPI "tourBooking/service/user/api"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
@@ -16,7 +17,13 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	server := rest.MustNewServer(c.RestConf)
+
 	defer server.Stop()
+
+	//user service
+
+	userService := userAPI.NewUserService(server)
+	userService.Start()
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()

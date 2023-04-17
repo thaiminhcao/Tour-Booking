@@ -7,18 +7,32 @@ info (
 	email: "thosankieuhanh123@gmail.com"
 )
 
-type request {
-	// TODO: add members here and delete this comment
+type registationReq {
+	Name     string `json:"username"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
+	Gender   string `json:"gender"`
+	Dob      string `json:"dob"`
 }
 
-type response {
-	// TODO: add members here and delete this comment
+type registationResp {
+	Message string `json:"message"`
+}
+
+type loginReq {
+	Name     string `json:"username"`
+	Password string `json:"password"`
+}
+
+type loginResp {
+	Message string `json:"message"`
+	Token   string `json:"authToken"`
 }
 
 service user-api {
-	@handler GetUser // TODO: set handler name and delete this comment
-	get /users/id/:userId(request) returns(response)
+	@handler CreateUser
+	post /users/registation(registationReq) returns(registationResp)
 	
-	@handler CreateUser // TODO: set handler name and delete this comment
-	post /users/create(request)
+	@handler UserLogin
+	post /users/login(loginReq) returns(loginResp)
 }

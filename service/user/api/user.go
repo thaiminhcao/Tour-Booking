@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"flag"
@@ -33,6 +33,6 @@ func NewUserService(server *rest.Server) *UserService {
 	}
 }
 
-func (as *UserService) Start() error {
+func (cs *UserService) Start() error {
 	return nil
 }

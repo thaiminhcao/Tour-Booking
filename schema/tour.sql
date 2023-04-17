@@ -1,5 +1,5 @@
 CREATE TABLE `tour` (
-  `tour_id` integer,
+  `tour_id` integer AUTO_INCREMENT,
   `tour_name` varchar(255),
   `desciption` varchar(255),
   `price` integer,
