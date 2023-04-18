@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"tourBooking/config"
+	"tourBooking/middleware"
 	userAPI "tourBooking/service/user/api"
 
 	"github.com/zeromicro/go-zero/core/conf"
@@ -17,7 +18,7 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	server := rest.MustNewServer(c.RestConf)
-
+	server.Use(middleware.Cors())
 	defer server.Stop()
 
 	//user service

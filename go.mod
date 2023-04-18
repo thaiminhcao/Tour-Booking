@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/guregu/null v4.0.0+incompatible
+	github.com/rs/cors v1.9.0
 	github.com/zeromicro/go-zero v1.5.1
 	golang.org/x/crypto v0.8.0
 )
