@@ -26,6 +26,13 @@
       <div id="error-message"></div>
     </div>
     <script>
+      const express = require('express');
+      const app = express();
+      app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+      });
       function loginUser(event) {
         event.preventDefault(); // prevent form submission
         const username = document.querySelector("#username").value;

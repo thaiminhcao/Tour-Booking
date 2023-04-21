@@ -29,10 +29,15 @@ type loginResp {
 	Token   string `json:"authToken"`
 }
 
+@server(
+	middleware: Cors
+)
+
 service user-api {
 	@handler CreateUser
 	post /users/registation(registationReq) returns(registationResp)
 	
 	@handler UserLogin
 	post /users/login(loginReq) returns(loginResp)
+	
 }

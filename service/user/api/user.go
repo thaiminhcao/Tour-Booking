@@ -23,7 +23,6 @@ func NewUserService(server *rest.Server) *UserService {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	ctx := svc.NewServiceContext(c)
-
 	handler.RegisterHandlers(server, ctx)
 
 	return &UserService{
