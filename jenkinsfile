@@ -1,11 +1,10 @@
-pineline{
+pineline    {
         agent any
-        stages{
-            stages('Clone'){
-                steps{
+        stages  {
+            stages('Clone') {
+                steps   {
                     git 'https://github.com/thaiminhcao/Tour-Booking.git'
                 }
             }
-
         }
 }
